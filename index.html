@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ОСНОВА — строительная компания</title>
+  <meta name="description" content="Строительство домов и коммерческих объектов под ключ.">
+  <meta name="theme-color" content="#ebe8e1">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@600;800;900&family=Sofia+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ===== Прелоадер: чертёж собирается ===== -->
+  <div class="loader" aria-hidden="true">
+    <svg viewBox="0 0 200 160" class="loader__svg">
+      <path pathLength="1" d="M20 140 H180"/>
+      <path pathLength="1" d="M40 140 V70 L100 25 L160 70 V140"/>
+      <path pathLength="1" d="M85 140 V100 H115 V140"/>
+      <path pathLength="1" d="M55 80 H75 V98 H55 Z M125 80 H145 V98 H125 Z"/>
+    </svg>
+    <p class="loader__t mono">Загружаем чертежи <b>0%</b></p>
+  </div>
+
+  <!-- Курсор-рулетка -->
+  <div class="cross" aria-hidden="true"><i class="cross__h"></i><i class="cross__v"></i><span class="cross__xy mono"></span></div>
+
+  <a class="skip" href="#main">К содержимому</a>
+
+  <!-- ===== Шапка ===== -->
+  <header class="header">
+    <div class="wrap header__in">
+      <a href="#top" class="logo" aria-label="На главную">
+        <span class="logo__mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="logo__name" data-bind="brand.name"></span>
+      </a>
+      <nav class="nav" aria-label="Меню">
+        <a href="#services">Услуги</a>
+        <a href="#projects">Проекты</a>
+        <a href="#stages">Этапы</a>
+        <a href="#calc">Стоимость</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <div class="header__right">
+        <a class="header__phone" data-href="tel" data-bind="contacts.phone"></a>
+        <a href="#request" class="btn btn--accent btn--sm"><span>Рассчитать смету</span></a>
+        <button class="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" aria-hidden="true">
+    <nav>
+      <a href="#services">Услуги</a>
+      <a href="#projects">Проекты</a>
+      <a href="#stages">Этапы</a>
+      <a href="#calc">Стоимость</a>
+      <a href="#request">Заявка</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a class="menu__phone" data-href="tel" data-bind="contacts.phone"></a>
+  </div>
+
+  <main id="main">
+
+    <!-- ===== HERO: дом строится при прокрутке ===== -->
+    <section class="hero" id="top">
+      <div class="hero__sticky">
+        <div class="hero__grid" aria-hidden="true"></div>
+        <div class="wrap hero__in">
+          <div class="hero__text">
+            <p class="tag mono"><i></i><span data-bind="hero.tag"></span></p>
+            <h1 class="hero__title" data-render="heroTitle"></h1>
+            <p class="hero__lead" data-bind="hero.lead"></p>
+            <div class="hero__cta">
+              <a href="#calc" class="btn btn--accent magnetic"><span>Рассчитать стоимость</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <a href="#projects" class="btn btn--ghost magnetic"><span>Смотреть проекты</span></a>
+            </div>
+          </div>
+
+          <div class="hero__scene" aria-hidden="true">
+            <svg class="scene" viewBox="0 0 700 700">
+              <circle class="scene__sun" cx="130" cy="150" r="56"/>
+              <g class="scene__clouds">
+                <path d="M60 230 q20 -26 50 -12 q16 -22 44 -6 q30 0 26 18 H60 Z"/>
+                <path d="M430 120 q16 -20 40 -10 q14 -18 36 -4 q24 0 20 14 H430 Z"/>
+              </g>
+              <!-- кран -->
+              <g class="crane">
+                <g class="crane__mast"></g>
+                <rect x="548" y="52" width="40" height="30" class="crane__cab"/>
+                <g class="crane__jib">
+                  <path d="M90 70 H690 M90 84 H690" class="crane__beam"/>
+                  <g class="crane__lattice"></g>
+                  <path d="M568 20 L90 70 M568 20 L690 70 M568 20 V70" class="crane__tie"/>
+                  <rect x="640" y="84" width="46" height="34" class="crane__weight"/>
+                  <g class="crane__trolley">
+                    <rect x="-16" y="84" width="32" height="10" class="crane__car"/>
+                    <line x1="0" y1="94" x2="0" y2="200" class="crane__cable"/>
+                    <g class="crane__hook">
+                      <path d="M-8 0 h16 v10 h-16 Z M0 10 v10 a8 8 0 1 1 -8 8" class="crane__hookpath"/>
+                      <g class="crane__load">
+                        <path d="M0 34 L-70 60 M0 34 L70 60" class="crane__sling"/>
+                        <rect x="-80" y="60" width="160" height="20" class="crane__slab"/>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+              <!-- здание -->
+              <g class="building"></g>
+              <!-- земля -->
+              <path d="M0 646 H700" class="scene__ground"/>
+              <g class="scene__fence"></g>
+            </svg>
+            <div class="hud mono">
+              <div><span>Этаж</span><b class="hud__floor">00</b><small>/ <span class="hud__total">09</span></small></div>
+              <div><span>Готовность</span><b class="hud__pct">0</b><small>%</small></div>
+              <div><span>Месяц</span><b class="hud__month">0</b><small>/ <span data-bind="hero.months"></span></small></div>
+            </div>
+          </div>
+        </div>
+        <div class="hero__hint mono" aria-hidden="true">Листайте вниз — строим <i></i></div>
+      </div>
+    </section>
+
+    <!-- ===== Сигнальные ленты ===== -->
+    <div class="tapes" aria-hidden="true">
+      <div class="tape tape--a"><div class="tape__track" data-render="tapes"></div></div>
+      <div class="tape tape--b"><div class="tape__track" data-render="tapes"></div></div>
+    </div>
+
+    <!-- ===== Цифры ===== -->
+    <section class="stats sec">
+      <div class="wrap stats__grid" data-render="stats"></div>
+    </section>
+
+    <!-- ===== Услуги: bento ===== -->
+    <section class="services sec" id="services">
+      <div class="wrap">
+        <div class="head">
+          <p class="kicker mono"><b>01</b> Услуги</p>
+          <h2 class="h2 split">Берём на себя <mark>весь цикл</mark> стройки</h2>
+        </div>
+        <div class="bento" data-render="services"></div>
+      </div>
+    </section>
+
+    <!-- ===== Проекты: sticky-витрина ===== -->
+    <section class="projects sec sec--dark" id="projects">
+      <div class="wrap">
+        <div class="head">
+          <p class="kicker mono"><b>02</b> Проекты</p>
+          <h2 class="h2 split">Объекты, которыми <mark>гордимся</mark></h2>
+        </div>
+        <div class="projects__grid">
+          <ol class="plist" data-render="projectList"></ol>
+          <div class="pview">
+            <div class="pview__frame">
+              <div class="pview__imgs" data-render="projectImages"></div>
+              <div class="pview__meta mono">
+                <span class="pview__type"></span>
+                <span class="pview__place"></span>
+              </div>
+              <span class="pview__corner pview__corner--tl"></span><span class="pview__corner pview__corner--br"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Этапы: рулетка ===== -->
+    <section class="stages sec" id="stages">
+      <div class="wrap stages__grid">
+        <div class="stages__head">
+          <p class="kicker mono"><b>03</b> Этапы</p>
+          <h2 class="h2 split">От котлована <mark>до ключей</mark></h2>
+          <p class="muted">Шесть этапов, каждый принимается по акту. Вы платите только за выполненный этап.</p>
+          <div class="depth mono" aria-hidden="true"><span>Глубина / высота</span><b class="depth__val">0.0 м</b></div>
+        </div>
+        <div class="ruler">
+          <div class="ruler__tape" aria-hidden="true"><div class="ruler__fill"></div></div>
+          <ol class="ruler__list" data-render="stages"></ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Калькулятор: чертёж ===== -->
+    <section class="calc sec sec--blue" id="calc">
+      <div class="wrap">
+        <div class="head">
+          <p class="kicker mono"><b>04</b> Калькулятор</p>
+          <h2 class="h2 split">Сколько стоит <mark>ваш дом?</mark></h2>
+        </div>
+        <div class="calc__grid">
+          <div class="calc__controls">
+            <div class="ctrl">
+              <div class="ctrl__top"><label for="c-area" class="mono">Площадь дома</label><output class="ctrl__out" for="c-area"><b class="c-area-val">180</b> м²</output></div>
+              <input type="range" id="c-area" class="range">
+              <div class="ctrl__scale mono"><span data-bind="calculator.areaMin"></span><span data-bind="calculator.areaMax"></span></div>
+            </div>
+            <div class="ctrl">
+              <span class="mono ctrl__label" id="floorsL">Этажность</span>
+              <div class="chips" role="radiogroup" aria-labelledby="floorsL">
+                <button type="button" class="chip" role="radio" aria-checked="false" data-floors="1">1 этаж</button>
+                <button type="button" class="chip" role="radio" aria-checked="true" data-floors="2">2 этажа</button>
+                <button type="button" class="chip" role="radio" aria-checked="false" data-floors="3">3 этажа</button>
+              </div>
+            </div>
+            <div class="ctrl">
+              <span class="mono ctrl__label" id="matL">Материал стен</span>
+              <div class="chips" role="radiogroup" aria-labelledby="matL" data-render="materials"></div>
+            </div>
+            <div class="ctrl">
+              <span class="mono ctrl__label">Дополнительно</span>
+              <div class="toggles" data-render="extras"></div>
+            </div>
+          </div>
+          <div class="calc__result">
+            <svg class="house" viewBox="0 0 400 300" aria-hidden="true">
+              <g class="house__dims"></g>
+              <g class="house__body"></g>
+            </svg>
+            <div class="calc__nums">
+              <div><span class="mono">Стоимость</span><b><span class="c-sum">0</span> ₽</b></div>
+              <div><span class="mono">Срок</span><b><span class="c-term">0</span> мес.</b></div>
+              <div><span class="mono">За м²</span><b><span class="c-m2">0</span> ₽</b></div>
+            </div>
+            <p class="calc__note" data-bind="calculator.note"></p>
+            <a href="#request" class="btn btn--accent btn--block" data-calc-cta><span>Получить точную смету</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Печати ===== -->
+    <section class="stamps sec">
+      <div class="wrap">
+        <div class="head head--center">
+          <p class="kicker mono"><b>05</b> Гарантии</p>
+          <h2 class="h2 split">Заверено <mark>печатью</mark></h2>
+        </div>
+        <div class="stamps__row" data-render="stamps"></div>
+      </div>
+    </section>
+
+    <!-- ===== Отзывы: доска с записками ===== -->
+    <section class="board sec" id="reviews">
+      <div class="wrap">
+        <div class="head">
+          <p class="kicker mono"><b>06</b> Отзывы</p>
+          <h2 class="h2 split">Что пишут <mark>заказчики</mark></h2>
+        </div>
+        <div class="board__notes" data-render="reviews"></div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="faq sec">
+      <div class="wrap faq__grid">
+        <div>
+          <p class="kicker mono"><b>07</b> Вопросы</p>
+          <h2 class="h2 split">Отвечаем <mark>честно</mark></h2>
+        </div>
+        <div data-render="faq"></div>
+      </div>
+    </section>
+
+    <!-- ===== Заявка ===== -->
+    <section class="request sec sec--dark" id="request">
+      <div class="wrap request__grid">
+        <div>
+          <p class="kicker mono"><b>08</b> Заявка</p>
+          <h2 class="h2 h2--xl split">Посчитаем <mark>смету</mark> за 24 часа</h2>
+          <p class="muted">Пришлите проект или просто опишите, что хотите построить. Инженер свяжется, задаст вопросы и подготовит расчёт.</p>
+          <ul class="perks mono">
+            <li>Выезд инженера на участок — бесплатно</li>
+            <li>Смета в Excel с разбивкой по этапам</li>
+            <li>Никаких звонков с навязыванием</li>
+          </ul>
+        </div>
+        <form class="form" novalidate>
+          <fieldset class="f f--full">
+            <legend class="mono">Что строим?</legend>
+            <div class="chips chips--dark" role="radiogroup">
+              <button type="button" class="chip" role="radio" aria-checked="true" data-type="Частный дом">Частный дом</button>
+              <button type="button" class="chip" role="radio" aria-checked="false" data-type="Коммерция">Коммерция</button>
+              <button type="button" class="chip" role="radio" aria-checked="false" data-type="Реконструкция">Реконструкция</button>
+              <button type="button" class="chip" role="radio" aria-checked="false" data-type="Фундамент">Фундамент</button>
+            </div>
+          </fieldset>
+          <div class="f">
+            <label for="r-name" class="mono">Имя</label>
+            <input id="r-name" name="name" autocomplete="name" required>
+            <small class="f__err">Укажите имя</small>
+          </div>
+          <div class="f">
+            <label for="r-phone" class="mono">Телефон</label>
+            <input id="r-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required>
+            <small class="f__err">Проверьте номер</small>
+          </div>
+          <div class="f">
+            <label for="r-area" class="mono">Площадь, м²</label>
+            <input id="r-area" name="area" inputmode="numeric" placeholder="180">
+          </div>
+          <div class="f">
+            <label for="r-place" class="mono">Где участок</label>
+            <input id="r-place" name="place" placeholder="Город или район">
+          </div>
+          <div class="f f--full">
+            <label for="r-msg" class="mono">Комментарий</label>
+            <textarea id="r-msg" name="msg" rows="3" placeholder="Сроки, бюджет, пожелания"></textarea>
+          </div>
+          <label class="drop f--full">
+            <input type="file" name="file" multiple accept=".pdf,.dwg,.jpg,.jpeg,.png,.zip">
+            <span class="drop__ic" aria-hidden="true">↑</span>
+            <span class="drop__t"><b>Прикрепить проект</b><small>PDF, DWG, JPG, ZIP — перетащите или нажмите</small></span>
+          </label>
+          <label class="agree f--full"><input type="checkbox" checked required><span>Согласен на обработку персональных данных</span></label>
+          <button type="submit" class="btn btn--accent btn--block btn--lg f--full"><span>Отправить заявку</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== Контакты ===== -->
+    <section class="contacts sec" id="contacts">
+      <div class="wrap contacts__grid">
+        <div>
+          <p class="kicker mono"><b>09</b> Контакты</p>
+          <h2 class="h2 split">Ждём <mark>в офисе</mark></h2>
+          <dl class="clist">
+            <div><dt class="mono">Офис</dt><dd data-bind="contacts.address"></dd></div>
+            <div><dt class="mono">Телефон</dt><dd><a data-href="tel" data-bind="contacts.phone"></a></dd></div>
+            <div><dt class="mono">Почта</dt><dd><a data-href="mailto" data-bind="contacts.email"></a></dd></div>
+            <div><dt class="mono">Часы</dt><dd data-bind="contacts.hours"></dd></div>
+          </dl>
+          <div class="socials" data-render="socials"></div>
+        </div>
+        <div class="map" data-render="map"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__top">
+        <div class="footer__big" data-bind="brand.name"></div>
+        <a href="#top" class="hook" aria-label="Наверх">
+          <span class="hook__cable"></span>
+          <svg viewBox="0 0 40 60" aria-hidden="true"><path d="M12 0 h16 v12 h-16 Z M20 12 v16 a10 10 0 1 1 -10 10"/></svg>
+          <span class="mono">Наверх</span>
+        </a>
+      </div>
+      <div class="footer__row mono">
+        <span>© <span data-year></span> <span data-bind="brand.name"></span></span>
+        <span data-bind="footer.legal"></span>
+        <a data-href-bind="footer.policyUrl">Политика конфиденциальности</a>
+        <button type="button" data-open-cookies>Настройки cookie</button>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#request" class="fab">Рассчитать смету</a>
+
+  <!-- ===== Cookie: сигнальная лента ===== -->
+  <div class="cookie" role="dialog" aria-label="Cookie" hidden>
+    <div class="cookie__tape" aria-hidden="true"></div>
+    <div class="cookie__in">
+      <p class="cookie__t mono">⚠ Внимание: cookie</p>
+      <p class="cookie__text"><span data-bind="cookies.text"></span> <a data-href-bind="cookies.policyUrl" data-bind="cookies.policyText"></a></p>
+      <div class="cookie__btns">
+        <button class="btn btn--ghost btn--sm" type="button" data-cookie="settings"><span>Настроить</span></button>
+        <button class="btn btn--dark btn--sm" type="button" data-cookie="accept"><span>Принять</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="cookieModal" role="dialog" aria-modal="true" aria-labelledby="ckT" hidden>
+    <div class="modal__bg" data-close></div>
+    <div class="modal__box">
+      <button class="modal__x" type="button" data-close aria-label="Закрыть">×</button>
+      <h3 id="ckT">Настройки cookie</h3>
+      <label class="sw"><input type="checkbox" checked disabled><span class="sw__ui"></span><span><b>Необходимые</b><small>Обеспечивают работу сайта</small></span></label>
+      <label class="sw"><input type="checkbox" data-cookie-type="analytics"><span class="sw__ui"></span><span><b>Аналитика</b><small>Яндекс Метрика</small></span></label>
+      <label class="sw"><input type="checkbox" data-cookie-type="marketing"><span class="sw__ui"></span><span><b>Маркетинг</b><small>Реклама и ретаргетинг</small></span></label>
+      <div class="modal__btns">
+        <button class="btn btn--ghost btn--sm" type="button" data-cookie="save"><span>Сохранить</span></button>
+        <button class="btn btn--dark btn--sm" type="button" data-cookie="accept"><span>Разрешить все</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="okModal" role="dialog" aria-modal="true" aria-labelledby="okT" hidden>
+    <div class="modal__bg" data-close></div>
+    <div class="modal__box modal__box--ok">
+      <div class="ok-stamp" aria-hidden="true">Принято</div>
+      <h3 id="okT">Заявка у инженера</h3>
+      <p class="ok-text"></p>
+      <button class="btn btn--dark btn--block" type="button" data-close><span>Хорошо</span></button>
+    </div>
+  </div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
