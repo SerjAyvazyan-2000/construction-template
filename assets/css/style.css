@@ -575,3 +575,9 @@ mark::before { content: ""; position: absolute; left: -.06em; right: -.06em; bot
   .split .w > span, .hero__title .hw > span { transform: none; }
   .stamp { transform: rotate(var(--r)) scale(1); opacity: .92; }
 }
+
+/* крупное название и скрытый cookie-баннер не должны перехватывать клики в подвале */
+.footer__big { pointer-events: none; }
+.footer__row { position: relative; z-index: 2; }
+.cookie[hidden] { display: none !important; }
+.cookie:not(.on) { pointer-events: none; }
